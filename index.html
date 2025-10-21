@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sámi Language Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to top, #142850, #27496d, #00909e);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      transition: background 1s ease;
+    }
+
+    .aurora-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at top, rgba(0,255,255,0.2), transparent),
+                  url('bg1.jpg') bottom/cover no-repeat;
+      z-index: -1;
+      filter: brightness(0.8);
+    }
+
+    .screen {
+      display: none;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 40px;
+      width: 340px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      font-weight: 600;
+      margin-bottom: 30px;
+      font-size: 1.3rem;
+    }
+
+    .btn {
+      display: block;
+      margin: 12px auto;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .btn-blue { background: #3b82f6; }
+    .btn-red { background: #ef4444; }
+    .btn-yellow { background: #facc15; color: #333; }
+    .btn-green { background: #10b981; }
+
+    .lesson-card, .game-card {
+      /*background: rgba(255,255,255,0.1);*/
+      background-color: #fff;
+      border: 3px solid #e9dead;
+      border-radius: 14px;
+      padding: 15px;
+      margin: 10px 0;
+      transition: all 0.3s ease;
+      color: #7d7d7d;
+    }
+
+    .lesson-card:hover, .game-card:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.03);
+      color: black;
+    }
+
+    .back-btn {
+      background: transparent;
+      color: #fff;
+      font-size: 0.9rem;
+      border: none;
+      margin-top: 15px;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+    .back-btn:hover { opacity: 1; }
+    .textbox {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      background-color: #fff;
+    }
+    
+  </style>
+  
+</head>
+<body>
+  <div class="aurora-bg"></div>
+
+  <!-- Screen 1: Choose Path -->
+  <div class="screen active" id="screen-login">
+    <h1>SÁMEGIELLA</h1>
+    
+    <input 
+    type="text" 
+    placeholder="Username" 
+    class="textbox"
+    />
+    <input 
+    type="password" 
+    placeholder="Password" 
+    class="textbox"
+    />
+    
+    <button class="btn btn-blue" onclick="goToScreen('path')">LOGIN</button>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-red" onclick="#">Sign up</button>
+                <!-- Facebook -->
+                <i class="fab fa-facebook" style="margin-right: 10px"></i>
+
+                <!-- Gmail / Google -->
+                <i class="fab fa-google"></i>
+
+            </div>
+            <div class="col" style="padding-top: 10px;">
+                <a href="#" style="color:white; text-decoration:none; font-size:0.9rem;">Forgot Password?</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+    
+
+  <!-- Screen 1: Choose Path -->
+  <div class="screen" id="screen-path">
+    <h1>CHOOSE YOUR PATH</h1>
+    <button class="btn btn-blue" onclick="goToScreen('classic')">📖 CLASSIC MODE</button>
+    <button class="btn btn-red" onclick="goToScreen('gamified')">🎮 GAMIFIED MODE</button>
+  </div>
+
+  <!-- Screen 2: Classic Mode -->
+  <div class="screen" id="screen-classic">
+    <h1>CLASSIC MODE</h1>
+    <div class="lesson-card">Lesson 1: Greetings (Bures)</div>
+    <div class="lesson-card">Lesson 2: Personal Information</div>
+    <div class="lesson-card">Lesson 3: Numbers & Counting</div>
+    <p style="margin-top:20px; font-size:0.9rem; opacity:0.9;">Learn Sámi. Live the Culture.</p>
+    <button class="back-btn" onclick="goToScreen('path')">← Back</button>
+  </div>
+
+  <!-- Screen 3: Gamified Mode -->
+  <div class="screen" id="screen-gamified">
+    <h1>CHOOSE YOUR GAME</h1>
+    <div class="game-card">
+      🦌 <strong>Reindeer Run</strong> <br><small>(Vocabulary)</small><br>
+      <button class="btn btn-blue" style="margin-top:8px;">Play Now</button>
+    </div>
+    <div class="game-card">
+      🎤 <strong>Joik Match</strong> <br><small>(Listening)</small><br>
+      <button class="btn btn-yellow" style="margin-top:8px;">Play Now</button>
+    </div>
+    <div class="game-card">
+      🏰 <strong>Grammar Gate</strong> <br><small>(Grammar)</small><br>
+      <button class="btn btn-green" style="margin-top:8px;">Play Now</button>
+    </div>
+    <button class="back-btn" onclick="goToScreen('path')">← Back</button>
+  </div>
+
+  <script>
+    function goToScreen(target) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      if (target === 'classic') document.getElementById('screen-classic').classList.add('active');
+      else if (target === 'gamified') document.getElementById('screen-gamified').classList.add('active');
+      else if (target === 'path') document.getElementById('screen-path').classList.add('active');
+      else document.getElementById('screen-path').classList.add('active');
+    }
+  </script>
+</body>
+</html>
